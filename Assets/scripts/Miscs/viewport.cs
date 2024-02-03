@@ -6,6 +6,7 @@ public class viewport : Singleton<viewport>
 {
     Vector2 minpot;
     Vector2 maxpot;
+    Vector3 res;
     Camera mainCamera;
     float midx;
     void Start()
@@ -31,7 +32,7 @@ public class viewport : Singleton<viewport>
     }
     public Vector3 BackEnemyTarget(Vector2 bias)//敌人的下一个移动位置
     {
-        Vector3 res = Vector3.zero;
+        res = Vector3.zero;
         res.x = Random.Range(midx + bias.x, maxpot.x - bias.x);
         res.y = Random.Range(minpot.y + bias.y, maxpot.y - bias.y);
         return res;

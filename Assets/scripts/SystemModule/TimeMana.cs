@@ -16,4 +16,14 @@ public class TimeMana : Singleton<TimeMana>
         Time.timeScale = TimeScale;
         Time.fixedDeltaTime = defaultTime * Time.timeScale;
     }
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        Time.fixedDeltaTime = 0f;
+    }
+    public void ContinueGame()
+    {
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = defaultTime;
+    }
 }

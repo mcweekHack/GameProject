@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "pause",
+                    "type": "Button",
+                    "id": "bbf05c1d-e150-4958-aaa8-dd4c63ccb000",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -128,6 +137,45 @@
                     "processors": "",
                     "groups": "",
                     "action": "Overdrive",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b4c9eec-67c8-444d-a55f-96c2c2e9a68c",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PauseMenu",
+            "id": "ad69c90c-0aa9-4dff-a8b1-4a0a56586870",
+            "actions": [
+                {
+                    "name": "Contiune",
+                    "type": "Button",
+                    "id": "d2339cf9-b91f-4ec2-bbc2-14613f53d3bc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "adec0652-c0c9-48ba-b448-877f35068d05",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Contiune",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

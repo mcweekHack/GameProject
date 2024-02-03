@@ -70,6 +70,7 @@ public class player : Character
         PlayerOverdrive.off += OnOverdriveOff;
 
         Hud_health.Initialize(MaxHealth, health);
+        energy_system.instance.ClearEnergy();
     }
     void OnDisable()
     {
@@ -81,6 +82,14 @@ public class player : Character
         input_.onOverdirve -= OnOverdrive;
         PlayerOverdrive.on -= OnOverdriveOn;
         PlayerOverdrive.off -= OnOverdriveOff;
+        try
+        {
+            Score_system.instance.Score_Reset();
+        }
+        catch
+        {
+
+        }
     }
     void Start()
     {

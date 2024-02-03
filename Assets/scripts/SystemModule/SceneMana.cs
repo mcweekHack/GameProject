@@ -23,6 +23,12 @@ public class SceneMana : PersistentSingleton<SceneMana>
             StopCoroutine(LoadCoro);
         LoadCoro = StartCoroutine(LoadCoroutine(GameScene));
     }
+    public void BackToStartMenu()
+    {
+        if (LoadCoro != null)
+            StopCoroutine(LoadCoro);
+        LoadCoro = StartCoroutine(LoadCoroutine(StartScene));
+    }
     IEnumerator LoadCoroutine(string SceneName)
     {
         var loading = SceneManager.LoadSceneAsync(SceneName);
@@ -42,5 +48,6 @@ public class SceneMana : PersistentSingleton<SceneMana>
             yield return null;
         }
         emission_image.gameObject.SetActive(false);
+        TimeMana.instance.ContinueGame();
     }
 }

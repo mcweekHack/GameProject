@@ -62,6 +62,15 @@ public partial class @playercon: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""bbf05c1d-e150-4958-aaa8-dd4c63ccb000"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,45 @@ public partial class @playercon: IInputActionCollection2, IDisposable
                     ""action"": ""Overdrive"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b4c9eec-67c8-444d-a55f-96c2c2e9a68c"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PauseMenu"",
+            ""id"": ""ad69c90c-0aa9-4dff-a8b1-4a0a56586870"",
+            ""actions"": [
+                {
+                    ""name"": ""Contiune"",
+                    ""type"": ""Button"",
+                    ""id"": ""d2339cf9-b91f-4ec2-bbc2-14613f53d3bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""adec0652-c0c9-48ba-b448-877f35068d05"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Contiune"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -181,6 +229,10 @@ public partial class @playercon: IInputActionCollection2, IDisposable
         m_player_playerFire = m_player.FindAction("playerFire", throwIfNotFound: true);
         m_player_Doge = m_player.FindAction("Doge", throwIfNotFound: true);
         m_player_Overdrive = m_player.FindAction("Overdrive", throwIfNotFound: true);
+        m_player_pause = m_player.FindAction("pause", throwIfNotFound: true);
+        // PauseMenu
+        m_PauseMenu = asset.FindActionMap("PauseMenu", throwIfNotFound: true);
+        m_PauseMenu_Contiune = m_PauseMenu.FindAction("Contiune", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -246,6 +298,7 @@ public partial class @playercon: IInputActionCollection2, IDisposable
     private readonly InputAction m_player_playerFire;
     private readonly InputAction m_player_Doge;
     private readonly InputAction m_player_Overdrive;
+    private readonly InputAction m_player_pause;
     public struct PlayerActions
     {
         private @playercon m_Wrapper;
@@ -254,6 +307,7 @@ public partial class @playercon: IInputActionCollection2, IDisposable
         public InputAction @playerFire => m_Wrapper.m_player_playerFire;
         public InputAction @Doge => m_Wrapper.m_player_Doge;
         public InputAction @Overdrive => m_Wrapper.m_player_Overdrive;
+        public InputAction @pause => m_Wrapper.m_player_pause;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -275,6 +329,9 @@ public partial class @playercon: IInputActionCollection2, IDisposable
             @Overdrive.started += instance.OnOverdrive;
             @Overdrive.performed += instance.OnOverdrive;
             @Overdrive.canceled += instance.OnOverdrive;
+            @pause.started += instance.OnPause;
+            @pause.performed += instance.OnPause;
+            @pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -291,6 +348,9 @@ public partial class @playercon: IInputActionCollection2, IDisposable
             @Overdrive.started -= instance.OnOverdrive;
             @Overdrive.performed -= instance.OnOverdrive;
             @Overdrive.canceled -= instance.OnOverdrive;
+            @pause.started -= instance.OnPause;
+            @pause.performed -= instance.OnPause;
+            @pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -308,6 +368,52 @@ public partial class @playercon: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @player => new PlayerActions(this);
+
+    // PauseMenu
+    private readonly InputActionMap m_PauseMenu;
+    private List<IPauseMenuActions> m_PauseMenuActionsCallbackInterfaces = new List<IPauseMenuActions>();
+    private readonly InputAction m_PauseMenu_Contiune;
+    public struct PauseMenuActions
+    {
+        private @playercon m_Wrapper;
+        public PauseMenuActions(@playercon wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Contiune => m_Wrapper.m_PauseMenu_Contiune;
+        public InputActionMap Get() { return m_Wrapper.m_PauseMenu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PauseMenuActions set) { return set.Get(); }
+        public void AddCallbacks(IPauseMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PauseMenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PauseMenuActionsCallbackInterfaces.Add(instance);
+            @Contiune.started += instance.OnContiune;
+            @Contiune.performed += instance.OnContiune;
+            @Contiune.canceled += instance.OnContiune;
+        }
+
+        private void UnregisterCallbacks(IPauseMenuActions instance)
+        {
+            @Contiune.started -= instance.OnContiune;
+            @Contiune.performed -= instance.OnContiune;
+            @Contiune.canceled -= instance.OnContiune;
+        }
+
+        public void RemoveCallbacks(IPauseMenuActions instance)
+        {
+            if (m_Wrapper.m_PauseMenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPauseMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PauseMenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PauseMenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PauseMenuActions @PauseMenu => new PauseMenuActions(this);
     private int m_PCSchemeIndex = -1;
     public InputControlScheme PCScheme
     {
@@ -323,5 +429,10 @@ public partial class @playercon: IInputActionCollection2, IDisposable
         void OnPlayerFire(InputAction.CallbackContext context);
         void OnDoge(InputAction.CallbackContext context);
         void OnOverdrive(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IPauseMenuActions
+    {
+        void OnContiune(InputAction.CallbackContext context);
     }
 }

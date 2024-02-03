@@ -60,7 +60,11 @@ public class energy_system : Singleton<energy_system>
             PlayerOverdrive.off.Invoke();
         return true;
     }
-
+    public void ClearEnergy()
+    {
+        CurrentEnergy = MaxEnergy/2;
+        BarUI.UpdateStatus(MaxEnergy, CurrentEnergy);
+    }
 
 
 

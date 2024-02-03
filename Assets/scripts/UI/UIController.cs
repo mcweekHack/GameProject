@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem.UI;
+using UnityEngine.UI;
+
+public class UIController : Singleton<UIController>
+{
+    InputSystemUIInputModule UIInputModule;
+    [SerializeField] playerinput input_;
+    protected override void Awake()
+    {
+        base.Awake();
+        UIInputModule = GetComponent<InputSystemUIInputModule>();
+        UIInputModule.enabled = false;
+    }
+    public void SelectUI(Selectable UIObject)
+    {
+        UIObject.Select();
+        UIObject.OnSelect(null);
+        UIInputModule.enabled = true;
+    }
+    public void DisableInput()
+    {
+        input_.DisableCon();
+        UIInputModule.enabled = false;
+    }
+}
