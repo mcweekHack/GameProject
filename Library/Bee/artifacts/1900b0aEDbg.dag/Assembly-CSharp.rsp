@@ -32,6 +32,7 @@
 -define:PLATFORM_ARCH_64
 -define:UNITY_64
 -define:UNITY_INCLUDE_TESTS
+-define:UNITY_ANALYTICS
 -define:ENABLE_AR
 -define:ENABLE_AUDIO
 -define:ENABLE_CACHING
@@ -411,10 +412,19 @@
 "Assets/OutResource/JMO Assets/Cartoon FX (legacy)/Scripts/CFX_AutoRotate.cs"
 "Assets/OutResource/JMO Assets/Cartoon FX (legacy)/Scripts/CFX_LightFlicker.cs"
 "Assets/OutResource/JMO Assets/Cartoon FX (legacy)/Scripts/CFX_LightIntensityFade.cs"
+"Assets/OutResource/VolumetricLines/BuiltInRenderPipeline/ExampleScenes/ExampleScripts/CannonBehavior.cs"
+"Assets/OutResource/VolumetricLines/BuiltInRenderPipeline/ExampleScenes/ExampleScripts/CreateSinShapedLineStrip.cs"
+"Assets/OutResource/VolumetricLines/BuiltInRenderPipeline/ExampleScenes/ExampleScripts/ShotBehavior.cs"
+"Assets/OutResource/VolumetricLines/BuiltInRenderPipeline/ExampleScenes/ExampleScripts/VolumetricMultiLineBehavior.cs"
+"Assets/OutResource/VolumetricLines/Scripts/VolumetricLineBehavior.cs"
+"Assets/OutResource/VolumetricLines/Scripts/VolumetricLineStripBehavior.cs"
+"Assets/OutResource/VolumetricLines/Scripts/VolumetricLineVertexData.cs"
 "Assets/scripts/Audio/AudioMana.cs"
 "Assets/scripts/bullet/bullet.cs"
 "Assets/scripts/bullet/enemybullet.cs"
 "Assets/scripts/bullet/EnemyExpBullet.cs"
+"Assets/scripts/bullet/EnemyLaser.cs"
+"Assets/scripts/bullet/Laser.cs"
 "Assets/scripts/bullet/playerbullet.cs"
 "Assets/scripts/bullet/PlayerBulletOver.cs"
 "Assets/scripts/bullet/trackBullet.cs"
@@ -427,8 +437,10 @@
 "Assets/scripts/Characters/enemy/StateMachine/StateMachine.cs"
 "Assets/scripts/Characters/enemy/StateMachine/States/Explosion.cs"
 "Assets/scripts/Characters/enemy/StateMachine/States/IdleState.cs"
+"Assets/scripts/Characters/enemy/StateMachine/States/LaserAttack.cs"
 "Assets/scripts/Characters/enemy/StateMachine/States/MoveAttack.cs"
 "Assets/scripts/Characters/enemy/StateMachine/States/MultiAttack.cs"
+"Assets/scripts/Characters/enemy/StateMachine/States/WalkAround.cs"
 "Assets/scripts/Characters/player/energy_system.cs"
 "Assets/scripts/Characters/player/player.cs"
 "Assets/scripts/Characters/player/PlayerOverdrive.cs"

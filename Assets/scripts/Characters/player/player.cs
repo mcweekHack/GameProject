@@ -210,7 +210,7 @@ public class player : Character
     IEnumerator DogeCoroutine(Vector2 dir)
     {
         float cur = 0;
-        Playercollider.isTrigger = true;
+        Playercollider.enabled = false;
 
         input_.onMove -= OnMove;
         input_.onFire -= OnFire;
@@ -229,7 +229,7 @@ public class player : Character
         input_.SkillDoge += Doge;
 
         transform.rotation = Quaternion.AngleAxis(0f, Vector3.right);
-        Playercollider.isTrigger = false;
+        Playercollider.enabled = true;
     }
     void OnOverdrive()
     {

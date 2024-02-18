@@ -15,6 +15,8 @@ public class Explosion : IdleState
     GameObject ExpBullet;
     Vector3 tmp;
     GameObject check;
+    float durat;
+    float TimeTag;
     public Explosion(BossCon enemy, StateMachine stateMachine) : base(enemy, stateMachine){ }
 
     public override void AnimationTriggeredEvent(BossCon.AnimationTriggerType triggerType)
@@ -28,10 +30,11 @@ public class Explosion : IdleState
         ExpBullet = enemy.GetBullet_()[2];
         Angle = 0f;
         AngleGap = 30f;
-        MinDely = 0.5f;
-        MaxDely = 1f;
+        MinDely = 0.2f;
+        MaxDely = 0.5f;
         tmp = Vector3.left;
         FireDelyTime = 0f;
+        durat = 1f;
     }
     public override void FrameUpdate()
     {
@@ -49,6 +52,8 @@ public class Explosion : IdleState
             }
             FireDelyTime = Random.Range(MinDely, MaxDely);
         }
+        if (TimeTag < durat) TimeTag += Time.deltaTime;
+        else stateMachine.ChangeState(enemy.States[0]);
     }
     public override void FixedUpdate()
     {

@@ -8,6 +8,7 @@ public class Pool_manager : MonoBehaviour
     [SerializeField] Pool[] EnemyBullet;
     [SerializeField] Pool[] enemy;
     [SerializeField] Pool[] HitVFX;
+    [SerializeField] Pool[] Boss;
     [SerializeField] static Dictionary<GameObject, Pool> PoolDic;
     void Awake()
     {
@@ -16,6 +17,7 @@ public class Pool_manager : MonoBehaviour
         Initialize(EnemyBullet);
         Initialize(enemy);
         Initialize(HitVFX);
+        Initialize(Boss);
     }
     void Initialize(Pool[] pools)
     {
@@ -89,6 +91,7 @@ void OnDestroy()//≤‚ ‘¥˙¬Î
     CheckPoolSize(EnemyBullet);
     CheckPoolSize(enemy);
     CheckPoolSize(HitVFX);
+    CheckPoolSize(Boss);
 }
 #endif
     void CheckPoolSize(Pool[] pools)//≤‚ ‘¥˙¬Î

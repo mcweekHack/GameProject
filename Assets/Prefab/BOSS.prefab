@@ -19349,6 +19349,15 @@ MonoBehaviour:
   DaethAudio:
     clip: {fileID: 8300000, guid: 8524588a69a4f3e40bb597b6221138f1, type: 3}
     volume: 0.5
+  ShootSound1:
+    clip: {fileID: 8300000, guid: 08f78eba48bb21c44ac5a74ca84efc83, type: 3}
+    volume: 0.3
+  ShootSound2:
+    clip: {fileID: 8300000, guid: a28f97506cbe82d479cd46f40fa6efe0, type: 3}
+    volume: 0.3
+  LazerSound:
+    clip: {fileID: 8300000, guid: 84d97ee8bd1620449bc8b349ebca7126, type: 3}
+    volume: 0.5
   Score: 1000
   MoveDur: 4
   self: {fileID: 3079714327950683247}
@@ -19361,6 +19370,7 @@ MonoBehaviour:
   - {fileID: 4299179419508884520, guid: 7bbef215f4586e6429d3b387252054ca, type: 3}
   - {fileID: 760774603067971298, guid: 839b0afa56056ff47bd805fa5f333501, type: 3}
   - {fileID: 9096957372638034212, guid: cbc5f14d96e0ca448ba5df19b8d149a5, type: 3}
+  - {fileID: 3624101160019939899, guid: dc55d83bb697b0d4da87e729cfb58f6c, type: 3}
 --- !u!1 &3557767711764226761
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class BossCon : Character
 {
-    [SerializeField] AudioData hurtAudio;
-    [SerializeField] AudioData DaethAudio;
+    [SerializeField] public AudioData hurtAudio;
+    [SerializeField] public AudioData DaethAudio;
+    [SerializeField] public AudioData ShootSound1;
+    [SerializeField] public AudioData ShootSound2;
+    [SerializeField] public AudioData LazerSound;
 
     [SerializeField] int Score;
     [SerializeField] public float MoveDur;
@@ -17,18 +20,17 @@ public class BossCon : Character
     [SerializeField] Transform[] muzzle;
     [SerializeField] GameObject[] Bullet;
     public StateMachine stateMachine { get; set; }
-    public EnemyState idleState { get; set; }
-    public EnemyState moveAttack { get; set; }
-    public EnemyState multiAttack { get; set; }
-    public EnemyState explosion { get; set; }
+    public List<EnemyState> States;
      void Start()
     {
         stateMachine = new StateMachine();
-        idleState = new IdleState(this, stateMachine);
-        moveAttack = new MoveAttack(this, stateMachine);
-        multiAttack = new MultiAttack(this, stateMachine);
-        explosion = new Explosion(this, stateMachine);
-        stateMachine.Initilize(multiAttack);
+        States = new List<EnemyState>();
+        States.Add(new WalkAround(this, stateMachine));
+        States.Add(new MoveAttack(this, stateMachine));
+        States.Add(new MultiAttack(this, stateMachine));
+        States.Add(new Explosion(this, stateMachine));
+        States.Add(new LaserAttack(this, stateMachine));
+        stateMachine.Initilize(States[0]);
     }
 
     public void Update()
